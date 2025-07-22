@@ -55,24 +55,24 @@ const Navbar = () => {
         ) : (
           <ul className="flex gap-10 text-lg md:text-xl font-medium text-white">
             <li>
-              <a href="/#hero" className="hover:text-secondary transition">
+              <Link href="/#hero" className="hover:text-secondary transition">
                 Home
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/#features" className="hover:text-secondary transition">
+              <Link href="/#features" className="hover:text-secondary transition">
                 Features
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/#about" className="hover:text-secondary transition">
+              <Link href="/#about" className="hover:text-secondary transition">
                 About
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="/#contact" className="hover:text-secondary transition">
+              <Link href="/#contact" className="hover:text-secondary transition">
                 Contact
-              </a>
+              </Link>
             </li>
             <li>
             <Link href="/login" className="hover:text-secondary hover:underline">
@@ -85,21 +85,21 @@ const Navbar = () => {
 
       {isMobile && open && (
         <div className="flex flex-col items-center bg-white border-t shadow-md text-black py-4 space-y-2 text-lg font-medium">
-          <a href="/#hero" className="hover:text-secondary" onClick={handleLinkClick}>
+          <Link href="/#hero" className="hover:text-secondary" onClick={handleLinkClick}>
             Home
-          </a>
-          <a href="/#features" className="hover:text-secondary" onClick={handleLinkClick}>
+          </Link>
+          <Link href="/#features" className="hover:text-secondary" onClick={handleLinkClick}>
             Features
-          </a>
-          <a href="/#about" className="hover:text-secondary" onClick={handleLinkClick}>
+          </Link>
+          <Link href="/#about" className="hover:text-secondary" onClick={handleLinkClick}>
             About Us
-          </a>
-          <a href="/#contact" className="hover:text-secondary" onClick={handleLinkClick}>
+          </Link>
+          <Link href="/#contact" className="hover:text-secondary" onClick={handleLinkClick}>
             Contact
-          </a>
-          <a href="/login" className="hover:text-secondary" onClick={handleLinkClick}>
+          </Link>
+          <Link href="/login" className="hover:text-secondary" onClick={handleLinkClick}>
             Login
-          </a>          
+          </Link>          
         </div>
       )}
     </nav>
