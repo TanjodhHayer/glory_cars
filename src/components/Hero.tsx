@@ -25,9 +25,9 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="snap-center pt-40 pb-10 min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-950 flex flex-col justify-center"
-
+      className="scroll-mt-20 md:scroll-mt-40 pt-36 md:pt-40 pb-20 snap-start min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-950 flex flex-col justify-center"
     >
+
 
     <div className="max-w-4xl mx-auto px-6 text-center">
       <div className="inline-block text-left">
@@ -60,8 +60,8 @@ const Hero = () => {
         </a>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6 mt-20">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10">
+      <div className="max-w-5xl mx-auto px-6 mt-5">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
           {steps.map((step, index) => (
             <div
               key={index}
