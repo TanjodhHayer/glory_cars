@@ -25,7 +25,7 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="snap-center scroll-mt-40 pt-40 pb-20 min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-950 flex flex-col justify-center"
+      className="snap-center pt-40 pb-10 min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-950 flex flex-col justify-center"
 
     >
 
