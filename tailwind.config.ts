@@ -10,13 +10,18 @@ const config: Config = {
     extend: {
       colors: {
         primary: '#E60000',
-        secondary: '#004AAD',
+        secondary: '#4169e1',
         light: '#ffffff',
       },
     },
   },
   darkMode: 'class',
   plugins: [],
+  variants: {
+    extend: {
+      scrollSnapType: ['responsive'],
+    },
+  },
 };
 
 export default config;

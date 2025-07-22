@@ -1,24 +1,107 @@
 "use client";
 
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 50);
+    const onResize = () => setIsMobile(window.innerWidth < 768);
+
+    onScroll();
+    onResize();
+
+    window.addEventListener("scroll", onScroll);
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
+  const handleLinkClick = () => {
+    if (isMobile) setOpen(false);
+  };
 
   return (
-    <nav className="bg-white dark:bg-gray-900 shadow-md fixed w-full top-0 z-50">
+    <nav
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled ? "bg-black shadow-md" : "bg-black"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div className="text-2xl font-bold text-red-600">GloryCars</div>
-        <button className="md:hidden text-2xl" onClick={() => setOpen(!open)}>
-          ☰
-        </button>
-        <ul className={`md:flex gap-8 text-secondary dark:text-white ${open ? "block mt-4" : "hidden md:flex"} transition-all`}>
-          <li><a href="#hero" className="hover:text-red-600">Home</a></li>
-          <li><a href="#features" className="hover:text-red-600">Features</a></li>
-          <li><a href="#how" className="hover:text-red-600">How it Works</a></li>
-          <li><a href="#contact" className="hover:text-red-600">Contact</a></li>
-        </ul>
+      <div className="flex items-center gap-3">
+        <a href="#hero">
+          <img
+            src="/zoom-logo.jpg"
+            alt="GloryCars"
+            className="h-[80px] w-auto md:h-[100px] object-contain"
+            /></a>
       </div>
+
+
+        {isMobile ? (
+          <button
+            onClick={() => setOpen(!open)}
+            className="p-2 text-secondary focus:outline-none hover:text-primary"
+          >
+            {open ? <X size={32} /> : <Menu size={30} />}
+          </button>
+        ) : (
+          <ul className="flex gap-10 text-lg md:text-xl font-medium text-white">
+            <li>
+              <a href="/#hero" className="hover:text-secondary transition">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="/#features" className="hover:text-secondary transition">
+                Features
+              </a>
+            </li>
+            <li>
+              <a href="/#about" className="hover:text-secondary transition">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="/#contact" className="hover:text-secondary transition">
+                Contact
+              </a>
+            </li>
+            <li>
+            <Link href="/login" className="hover:text-secondary hover:underline">
+              Login
+            </Link>
+            </li>
+          </ul>
+        )}
+      </div>
+
+      {isMobile && open && (
+        <div className="flex flex-col items-center bg-white border-t shadow-md text-black py-4 space-y-2 text-lg font-medium">
+          <a href="/#hero" className="hover:text-secondary" onClick={handleLinkClick}>
+            Home
+          </a>
+          <a href="/#features" className="hover:text-secondary" onClick={handleLinkClick}>
+            Features
+          </a>
+          <a href="/#about" className="hover:text-secondary" onClick={handleLinkClick}>
+            About Us
+          </a>
+          <a href="/#contact" className="hover:text-secondary" onClick={handleLinkClick}>
+            Contact
+          </a>
+          <a href="/login" className="hover:text-secondary" onClick={handleLinkClick}>
+            Login
+          </a>          
+        </div>
+      )}
     </nav>
   );
 };
