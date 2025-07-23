@@ -8,7 +8,7 @@ const features = [
   {
     title: "Stress-Free Financing",
     description:
-      "No credit checks, no stress. Flexible plans up to 36 months with payments starting at just $42/month.",
+      "No credit checks. No hassle. Flexible payment plans for up to 36 months — making it easier than ever to get what you need, when you need it.",
     icon: "😌",
   },
   {
@@ -20,13 +20,13 @@ const features = [
   {
     title: "Fast & Secure Approval",
     description:
-      "Instant approval process with minimal documentation. All you need is your license, registration, and signed agreement.",
+      "Get approved in minutes — no lengthy forms or unnecessary info. Just the basics to get you movin g, with your privacy fully protected",
     icon: "⚡",
   },
   {
-    title: "Trusted Partner Network",
+    title: "You're in Good Hands",
     description:
-      "We partner with certified mechanics and shops you can trust. Your repairs are handled with care, and we pay your trusted mechanic directly so you can focus on what matters—getting back on the road.",
+      "We partner with certified, trustworthy mechanics who care about your ride as much as you do. Quality repairs, done right — so you can hit the road with total peace of mind.",
     icon: "🔧🤝",
   },
   

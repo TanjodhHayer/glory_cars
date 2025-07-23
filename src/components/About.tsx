@@ -10,17 +10,16 @@ const About = () => {
             About Glory Cars
           </h2>
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-            At Glory Cars, we believe car repairs should not break your budget or your peace of mind.
-            Our mission is to make auto financing fast, easy, and accessible for everyone—regardless of credit history.
+            At Glory Cars, we believe car repairs shouldn't come with stress.
+            Our mission is to make auto repair financing simple, fast, and available to everyone — no hoops, no hassles.
           </p>
           <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-            With no money down, no credit checks, and instant approval, we help drivers get the repairs they need with
-            monthly payments they can actually afford. Whether it is essential maintenance or major bodywork, we work directly
-            with your mechanic so you can just drive—stress-free.
+            With zero down, instant approval, and flexible payment plans, we help drivers get back on the road without the financial burden. 
+            Whether it's everyday maintenance or unexpected repairs, we work directly with your mechanic so you can focus on what matters — driving with confidence
           </p>
           <p className="text-lg text-gray-700 dark:text-gray-300">
-            Join thousands of satisfied customers who have chosen smarter car financing with Glory Cars.
-            Drive your dreams today.
+            Join thousands of happy drivers who've found a smarter, easier way to finance their repairs. Glory Cars — Drive your dreams, stress-free.
+
           </p>
         </div>
       </section>

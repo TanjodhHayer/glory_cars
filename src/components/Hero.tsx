@@ -48,7 +48,7 @@ const Hero = () => {
       </div>
 
       <p className="text-lg md:text-xl text-secondary max-w-xl mx-auto mb-8 mt-6">
-        No Money Down | Instant Approval | No Credit Check Required | First Payment Withdrawn in 2 Weeks
+        No Money Down | Instant Approval | No Credit Check Required
       </p>
 
 

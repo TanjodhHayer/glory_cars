@@ -1,8 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 
-const Contact = () => {
+type ContactProps = {
+  onBack?: () => void;
+};
+
+const Contact: React.FC<ContactProps> = ({ onBack }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -24,18 +28,15 @@ const Contact = () => {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
     const { name, value, type } = e.target;
-  
-    // Type guard to access checked only if input type checkbox
+
     const checked =
       type === "checkbox" ? (e.target as HTMLInputElement).checked : undefined;
-  
+
     setFormData((prev) => ({
       ...prev,
       [name]: type === "checkbox" ? checked : value,
     }));
   };
-  
-  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -74,10 +75,10 @@ const Contact = () => {
   };
 
   return (
-    <section
-      id="contact"
-      className="snap-start md:snap-center min-h-screen flex flex-col justify-center bg-white dark:bg-gray-950 px-6 pt-36 scroll-mt-36"
+    <section 
+      className="snap-start md:snap-center min-h-screen flex flex-col justify-center bg-white dark:bg-gray-950 px-6 pt-30 scroll-mt-30"
     >
+
       {showToast && (
         <div className="fixed top-6 left-1/2 transform -translate-x-1/2 bg-customRed text-white px-6 py-3 rounded-lg shadow-lg z-50 select-none pointer-events-none animate-fade-in-out">
           {toastMessage}
@@ -85,11 +86,11 @@ const Contact = () => {
       )}
 
       <div className="max-w-4xl mx-auto text-center mb-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-secondary dark:text-white mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-secondary text-black mb-4">
           Contact Us
         </h2>
         <p className="text-gray-700 dark:text-gray-300 mb-6">
-          Have questions? Contact us and we’ll be happy to help.
+          Have questions? Contact us and we'll be happy to help.
         </p>
         <div className="text-lg space-y-2 mb-6">
           <p className="text-gray-700 dark:text-gray-300">
@@ -109,7 +110,7 @@ const Contact = () => {
             <div>
               <label
                 htmlFor="name"
-                className="block text-lg font-semibold mb-1 text-gray-900 dark:text-white"
+                className="block text-lg font-semibold mb-1 text-gray-900 text-black"
               >
                 Name
               </label>
@@ -118,7 +119,7 @@ const Contact = () => {
                 type="text"
                 name="name"
                 placeholder="Enter your name"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:text-white placeholder-gray-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 text-black placeholder-gray-500"
                 value={formData.name}
                 onChange={handleChange}
                 required
@@ -129,7 +130,7 @@ const Contact = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-lg font-semibold mb-1 text-gray-900 dark:text-white"
+                className="block text-lg font-semibold mb-1 text-gray-900 text-black"
               >
                 Email
               </label>
@@ -138,7 +139,7 @@ const Contact = () => {
                 type="email"
                 name="email"
                 placeholder="Enter your email"
-                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:text-white placeholder-gray-500"
+                className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 text-black placeholder-gray-500"
                 value={formData.email}
                 onChange={handleChange}
                 required
@@ -150,7 +151,7 @@ const Contact = () => {
           <div className="mb-4">
             <label
               htmlFor="phone"
-              className="block text-lg font-semibold mb-1 text-gray-900 dark:text-white "
+              className="block text-lg font-semibold mb-1 text-gray-900 text-black "
             >
               Phone Number
             </label>
@@ -158,21 +159,21 @@ const Contact = () => {
               id="phone"
               type="tel"
               name="phone"
-              pattern="[0-9-]{10,}"
+              pattern="^[+()0-9\s-]{10,}$"
+              title="Please enter a valid phone number with at least 10 digits"
               placeholder="Enter your phone number"
-              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:text-white placeholder-gray-500"
+              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary dark:bg-gray-700 text-black placeholder-gray-500"
               value={formData.phone}
               onChange={handleChange}
               required
             />
           </div>
 
-        
           {/* Message */}
           <div className="mb-4">
             <label
               htmlFor="message"
-              className="block text-lg font-semibold mb-1 text-gray-900 dark:text-white"
+              className="block text-lg font-semibold mb-1 text-gray-900 text-black"
             >
               Message
             </label>
@@ -185,7 +186,6 @@ const Contact = () => {
               onChange={handleChange}
               required
             ></textarea>
-
           </div>
 
           {/* Consent Checkbox */}
@@ -201,12 +201,20 @@ const Contact = () => {
             />
             <label
               htmlFor="consent"
-              className="text-gray-900 dark:text-white select-none"
+              className="text-gray-900 text-black select-none"
             >
               I consent to be contacted by Glory Cars.
             </label>
           </div>
-
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="mb-4 text-primary hover:underline self-start"
+              type="button"
+            >
+              ← Back
+            </button>
+          )}
           <button
             type="submit"
             disabled={loading}

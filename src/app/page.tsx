@@ -1,7 +1,7 @@
 import React from "react";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
-import Contact from "@/components/Contact";
+import Contact from "@/components/ContactSelector";
 import About from "@/components/About";
 
 const Home: React.FC = () => {

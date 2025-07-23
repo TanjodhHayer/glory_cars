@@ -70,9 +70,10 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link href="/#contact" className="hover:text-secondary transition">
-                Contact
-              </Link>
+            <Link href="/#contact" className="hover:text-secondary transition">
+              Contact
+            </Link>
+
             </li>
             <li>
             <Link href="/login" className="hover:text-secondary hover:underline">
@@ -97,6 +98,7 @@ const Navbar = () => {
           <Link href="/#contact" className="hover:text-secondary" onClick={handleLinkClick}>
             Contact
           </Link>
+
           <Link href="/login" className="hover:text-secondary" onClick={handleLinkClick}>
             Login
           </Link>          
