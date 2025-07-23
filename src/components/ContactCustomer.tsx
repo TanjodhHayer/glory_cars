@@ -76,7 +76,7 @@ const Contact: React.FC<ContactProps> = ({ onBack }) => {
 
   return (
     <section 
-      className="snap-start md:snap-center min-h-screen flex flex-col justify-center bg-white dark:bg-gray-950 px-6 pt-30 scroll-mt-30"
+      className="snap-start md:snap-center min-h-screen flex flex-col justify-center bg-white dark:bg-gray-950 px-6 pt-36 scroll-mt-36"
     >
 
       {showToast && (
