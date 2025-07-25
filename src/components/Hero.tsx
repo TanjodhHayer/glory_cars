@@ -5,11 +5,6 @@ const steps = [
     icon: "📋",
   },
   {
-    title: "Apply Online",
-    description: "Use our quick and simple form; no credit check required.",
-    icon: "🖥️",
-  },
-  {
     title: "Get Approved Instantly",
     description: "Instant decision — no waiting around.",
     icon: "✔️",
@@ -20,6 +15,8 @@ const steps = [
     icon: "🚗",
   },
 ];
+
+
 
 const Hero = () => {
   return (
@@ -61,7 +58,7 @@ const Hero = () => {
       </div>
 
       <div className="max-w-5xl mx-auto px-6 mt-5">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="grid grid-cols-3 md:grid-cols-3 gap-5">
           {steps.map((step, index) => (
             <div
               key={index}
@@ -81,3 +78,4 @@ const Hero = () => {
 };
 
 export default Hero;
+

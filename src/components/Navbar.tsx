@@ -48,35 +48,35 @@ const Navbar = () => {
         {isMobile ? (
           <button
             onClick={() => setOpen(!open)}
-            className="p-2 text-secondary focus:outline-none hover:text-primary"
+            className="p-2 text-white focus:outline-none hover:text-primary"
           >
             {open ? <X size={32} /> : <Menu size={30} />}
           </button>
         ) : (
           <ul className="flex gap-10 text-lg md:text-xl font-medium text-white">
             <li>
-              <Link href="/#hero" className="hover:text-secondary transition">
+              <Link href="/#hero" className="hover:text-primary transition">
                 Home
               </Link>
             </li>
             <li>
-              <Link href="/#features" className="hover:text-secondary transition">
+              <Link href="/#features" className="hover:text-primary transition">
                 Features
               </Link>
             </li>
             <li>
-              <Link href="/#about" className="hover:text-secondary transition">
+              <Link href="/#about" className="hover:text-primary transition">
                 About
               </Link>
             </li>
             <li>
-            <Link href="/#contact" className="hover:text-secondary transition">
+            <Link href="/#contact" className="hover:text-primary transition">
               Contact
             </Link>
 
             </li>
             <li>
-            <Link href="/login" className="hover:text-secondary hover:underline">
+            <Link href="/login" className="hover:text-primary hover:underline">
               Login
             </Link>
             </li>
@@ -86,20 +86,20 @@ const Navbar = () => {
 
       {isMobile && open && (
         <div className="flex flex-col items-center bg-white border-t shadow-md text-black py-4 space-y-2 text-lg font-medium">
-          <Link href="/#hero" className="hover:text-secondary" onClick={handleLinkClick}>
+          <Link href="/#hero" className="hover:text-primary" onClick={handleLinkClick}>
             Home
           </Link>
-          <Link href="/#features" className="hover:text-secondary" onClick={handleLinkClick}>
+          <Link href="/#features" className="hover:text-primary" onClick={handleLinkClick}>
             Features
           </Link>
-          <Link href="/#about" className="hover:text-secondary" onClick={handleLinkClick}>
+          <Link href="/#about" className="hover:text-primary" onClick={handleLinkClick}>
             About Us
           </Link>
-          <Link href="/#contact" className="hover:text-secondary" onClick={handleLinkClick}>
+          <Link href="/#contact" className="hover:text-primary" onClick={handleLinkClick}>
             Contact
           </Link>
 
-          <Link href="/login" className="hover:text-secondary" onClick={handleLinkClick}>
+          <Link href="/login" className="hover:text-primary" onClick={handleLinkClick}>
             Login
           </Link>          
         </div>
