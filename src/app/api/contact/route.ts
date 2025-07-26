@@ -3,7 +3,7 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   const {
-    role, // "customer" | "mechanic"
+    role, 
     name,
     contactName,
     email,
@@ -16,7 +16,6 @@ export async function POST(req: Request) {
     consent,
   } = await req.json();
 
-  // Basic validation:
   if (
     !role ||
     !name ||
@@ -35,7 +34,7 @@ export async function POST(req: Request) {
   const user = process.env.EMAIL_USER;
   const pass = process.env.EMAIL_PASS;
 
-  // Separate receivers by role:
+
   const contactReceiverEmails: Record<string, string> = {
     customer: process.env.CONTACT_RECEIVER_CUSTOMER_EMAIL || "",
     mechanic: process.env.CONTACT_RECEIVER_MECHANIC_EMAIL || "",
@@ -56,7 +55,7 @@ export async function POST(req: Request) {
     auth: { user, pass },
   });
 
-  // Compose email subject & body:
+
   const emailSubject = `New ${role.charAt(0).toUpperCase() + role.slice(1)} Contact Submission from ${name}`;
 
   let emailBody = `

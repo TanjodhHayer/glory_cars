@@ -2,11 +2,7 @@
 
 import React, { useState } from "react";
 
-type ContactProps = {
-  onBack?: () => void;
-};
-
-const Contact: React.FC<ContactProps> = ({ onBack }) => {
+const ContactCustomer = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -25,7 +21,7 @@ const Contact: React.FC<ContactProps> = ({ onBack }) => {
   };
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value, type } = e.target;
 
@@ -50,7 +46,7 @@ const Contact: React.FC<ContactProps> = ({ onBack }) => {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, role: "customer" }),
       });
 
       if (response.ok) {
@@ -75,22 +71,23 @@ const Contact: React.FC<ContactProps> = ({ onBack }) => {
   };
 
   return (
-    <section 
-      className="snap-start md:snap-center min-h-screen flex flex-col justify-center bg-white dark:bg-gray-950 px-6 pt-36 scroll-mt-36"
-    >
-
+    <section className="h-screen overflow-y-auto flex flex-col justify-center bg-white dark:bg-gray-950 px-6 pt-36 scroll-mt-36">
       {showToast && (
-        <div className="fixed top-6 left-1/2 transform -translate-x-1/2 bg-customRed text-white px-6 py-3 rounded-lg shadow-lg z-50 select-none pointer-events-none animate-fade-in-out">
+        <div
+          role="alert"
+          aria-live="assertive"
+          className="fixed top-6 left-1/2 transform -translate-x-1/2 bg-customRed text-white px-6 py-3 rounded-lg shadow-lg z-50 select-none pointer-events-none animate-fade-in-out"
+        >
           {toastMessage}
         </div>
       )}
 
       <div className="max-w-4xl mx-auto text-center mb-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-secondary text-black mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-4">
           Contact Us
         </h2>
         <p className="text-gray-700 dark:text-gray-300 mb-6">
-          Have questions? Contact us and we&aposll be happy to help.
+          Have questions? Contact us and we&apos;ll be happy to help.
         </p>
         <div className="text-lg space-y-2 mb-6">
           <p className="text-gray-700 dark:text-gray-300">
@@ -110,7 +107,7 @@ const Contact: React.FC<ContactProps> = ({ onBack }) => {
             <div>
               <label
                 htmlFor="name"
-                className="block text-lg font-semibold mb-1 text-gray-900 text-black"
+                className="block text-lg font-semibold mb-1 text-black"
               >
                 Name
               </label>
@@ -130,7 +127,7 @@ const Contact: React.FC<ContactProps> = ({ onBack }) => {
             <div>
               <label
                 htmlFor="email"
-                className="block text-lg font-semibold mb-1 text-gray-900 text-black"
+                className="block text-lg font-semibold mb-1 text-black"
               >
                 Email
               </label>
@@ -151,7 +148,7 @@ const Contact: React.FC<ContactProps> = ({ onBack }) => {
           <div className="mb-4">
             <label
               htmlFor="phone"
-              className="block text-lg font-semibold mb-1 text-gray-900 text-black "
+              className="block text-lg font-semibold mb-1 text-black"
             >
               Phone Number
             </label>
@@ -173,7 +170,7 @@ const Contact: React.FC<ContactProps> = ({ onBack }) => {
           <div className="mb-4">
             <label
               htmlFor="message"
-              className="block text-lg font-semibold mb-1 text-gray-900 text-black"
+              className="block text-lg font-semibold mb-1 text-black"
             >
               Message
             </label>
@@ -201,20 +198,11 @@ const Contact: React.FC<ContactProps> = ({ onBack }) => {
             />
             <label
               htmlFor="consent"
-              className="text-gray-900 text-black select-none"
+              className="text-black select-none"
             >
               I consent to be contacted by Glory Cars.
             </label>
           </div>
-          {onBack && (
-            <button
-              onClick={onBack}
-              className="mb-4 text-primary hover:underline self-start"
-              type="button"
-            >
-              ← Back
-            </button>
-          )}
           <button
             type="submit"
             disabled={loading}
@@ -260,4 +248,4 @@ const Contact: React.FC<ContactProps> = ({ onBack }) => {
   );
 };
 
-export default Contact;
+export default ContactCustomer;
