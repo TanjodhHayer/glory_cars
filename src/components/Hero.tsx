@@ -16,40 +16,36 @@ const steps = [
   },
 ];
 
-
-
 const Hero = () => {
   return (
-    <section
-      id="hero"
-      className="scroll-mt-20 md:scroll-mt-40 pt-36 md:pt-40 pb-20 snap-start min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-950 flex flex-col justify-center"
-    >
+<section
+  id="hero"
+  className="scroll-mt-20 md:scroll-mt-40 pt-36 md:pt-40 pb-20 snap-start min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-950 flex items-center justify-center"
+>
+  <div className="w-full max-w-7xl px-4 md:px-10 flex flex-col md:flex-row items-center md:items-start justify-between gap-12">
+    
+    {/* Left Side: Hero Text */}
+    <div className="md:w-1/2 max-w-xl text-center md:text-left md:pr-12">
+      <h1 className="text-4xl md:text-6xl font-extrabold text-secondary mb-6 leading-snug tracking-tight">
+        <div className="flex justify-center md:justify-start gap-4">
+          <span>Easy</span>
+          <span className="text-primary">Loan.</span>
+        </div>
+        <div className="flex justify-center md:justify-start gap-4">
+          <span>Easy</span>
+          <span className="text-primary">Payments.</span>
+        </div>
+        <div className="flex justify-center md:justify-start gap-4">
+          <span>Easy</span>
+          <span className="text-primary">Life.</span>
+        </div>
+      </h1>
 
-
-    <div className="max-w-4xl mx-auto px-6 text-center">
-      <div className="inline-block text-left">
-        <h1 className="text-4xl md:text-6xl font-extrabold text-secondary mb-1 leading-snug tracking-tight">
-          <div className="flex gap-2">
-            <span>Easy</span>
-            <span className="text-primary">Loan.</span>
-          </div>
-          <div className="flex gap-2">
-            <span>Easy</span>
-            <span className="text-primary">Payments.</span>
-          </div>
-          <div className="flex gap-2">
-            <span>Easy</span>
-            <span className="text-primary">Life.</span>
-          </div>
-        </h1>
-      </div>
-
-      <p className="text-lg md:text-xl text-secondary max-w-xl mx-auto mb-8 mt-6">
+      <p className="text-lg md:text-xl text-secondary max-w-md mx-auto md:mx-0 mb-8">
         No Money Down | Instant Approval | No Credit Check Required
       </p>
 
-
-
+      <div className="w-full flex justify-center md:justify-start">
         <a href="#contact">
           <button className="px-8 py-4 bg-primary text-white font-semibold rounded-full shadow-lg hover:bg-red-700 transition-transform active:scale-95 focus:outline-none focus:ring-4 focus:ring-red-300">
             Get Started Now
@@ -57,25 +53,34 @@ const Hero = () => {
         </a>
       </div>
 
-      <div className="max-w-5xl mx-auto px-6 mt-5">
-        <div className="grid grid-cols-3 md:grid-cols-3 gap-5">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="bg-white dark:bg-gray-800 rounded-xl p-8 shadow-md hover:shadow-lg transition-shadow"
-            >
-              <div className="text-6xl mb-5">{step.icon}</div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+    </div>
+
+    {/* Right Side: Steps close to screen edge */}
+    <div className="md:w-1/2 w-full flex justify-center md:justify-end">
+      <div className="max-w-sm flex flex-col space-y-6">
+        {steps.map((step, index) => (
+          <div
+            key={index}
+            className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow flex items-start gap-4"
+          >
+            <div className="text-5xl">{step.icon}</div>
+            <div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-1">
                 {step.title}
               </h3>
-              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">{step.description}</p>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">
+                {step.description}
+              </p>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
+
   );
 };
 
 export default Hero;
-

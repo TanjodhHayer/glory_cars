@@ -40,7 +40,7 @@ const Features = () => {
       className="snap-start md:snap-center scroll-mt-40  min-h-screen lg:pt-36 text-center py-20 bg-white dark:bg-gray-950 px-6 pt-16 scroll-mt-16"
     >
       <div className="max-w-7xl mx-auto px-1">
-        <h2 className="text-3xl md:text-5xl font-bold text-center text-secondary dark:text-white mb-20">
+        <h2 className="text-3xl md:text-5xl font-bold text-center text-secondary dark:text-white mb-10">
           Why Choose Glory Cars?
         </h2>
 
