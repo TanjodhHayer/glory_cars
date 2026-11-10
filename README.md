@@ -60,12 +60,12 @@ Tests cover contact validation, origin checking, input size limits, throttling, 
 ## Release status
 
 This is the working checkout in D:\Dev\glory-cars. The earlier copy under glorycars-loan/tmp is a stale backup, not the active project.
-Local edits are not a deployment. Verify the production commit, email configuration, preview, and domain bindings before announcing the site as live.
+The rebrand was deployed on 2026-11-09 at https://www.gloryautohub.ca, with the apex redirecting to www. The release commit is 34172e1; see docs/REBRAND_HANDOFF.md for verification and remaining work. Production inbox delivery still needs a real test.
 
 Vercel marketing project: glory-cars.
 Vercel portal project: glory-cars-loan.
 
-Move only gloryautohub.ca and www.gloryautohub.ca to the marketing project after validating its production build. Leave portal.gloryautohub.ca and admin.gloryautohub.ca on the portal project. Preserve email DNS records. The old glorycars.ca address is a separate hosting/domain task and is not changed by these source edits.
+gloryautohub.ca and www.gloryautohub.ca now belong to the marketing project. Keep portal.gloryautohub.ca and admin.gloryautohub.ca on the portal project. Preserve email DNS records. The old glorycars.ca address is a separate hosting/domain task and is not changed by these source edits.
 
 ## Maintenance
 

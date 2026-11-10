@@ -14,8 +14,8 @@
 
 - Desktop/mobile visual checks in a supported browser.
 - Production contact-email configuration and inbox delivery.
-- Public-domain reassignment in Vercel after confirming the deployed commit.
-- Portal return-link update to the new public domain.
+- Public-domain reassignment completed on 2026-11-09; both main-domain names belong to glory-cars.
+- Portal return link deployed in commit 920e691.
 - Legacy glorycars.ca redirect at its actual hosting provider.
 
 ## Separate portal backlog
@@ -36,5 +36,14 @@ No domain or production-email change is performed by editing this repository.
 - Local production HTTP checks: 19 passed (pages, icon/search routes, portal redirects including reset-token preservation, custom 404, malformed/invalid/cross-origin contact rejection).
 - Preview: http://localhost:3106 while the local server is running.
 - Visual/browser interaction checks could not be completed because the available Windows browser automation does not support URL-policy enforcement. Responsive styling and keyboard behavior were reviewed in source, not visually certified.
-- Production inbox delivery, GitHub publication, deployment, and custom-domain reassignment are not completed.
+- GitHub publication, production deployment, and custom-domain reassignment completed on 2026-11-09. Production inbox delivery still needs a real inbox test.
 - ESLint 10 runs successfully; some bundled upstream plugins still declare peer ranges ending at ESLint 9 and npm emits peer warnings.
+
+## Live release — 2026-11-09
+
+- Website release commit: 34172e13bbf6ca49d276c97a7c3bd0c566a6c232. Vercel production deployment: dpl_BBtwZUU9h9k9o9fJwHnTeRFtdtum (READY).
+- https://www.gloryautohub.ca serves the public site; https://gloryautohub.ca redirects with 308 to www. Both domain assignments are verified.
+- portal.gloryautohub.ca and admin.gloryautohub.ca remain assigned to glory-cars-loan. No DNS or mail records changed.
+- Ten live HTTPS checks passed: homepage, both contact pages, portal login/signup, apex redirect, login/signup/register redirects, and billing redirect.
+- Existing production EMAIL_USER, EMAIL_PASS, and CONTACT_RECEIVER_EMAIL settings are present. No real enquiry was submitted during automated verification.
+- Shop signup is still pending/onboarding-only; live subscriptions are not enabled by this release. Mobile remains sign-in only.
