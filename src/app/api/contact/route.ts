@@ -1,99 +1,53 @@
-import { NextResponse } from "next/server";
+import { createHash } from "node:crypto";
 import nodemailer from "nodemailer";
+import { createContactHandler, createRateLimiter } from "@/lib/contact";
 
-export async function POST(req: Request) {
-  const {
-    role, 
-    name,
-    contactName,
-    email,
-    phone,
-    address,
-    city,
-    province,
-    postalCode,
-    message,
-    consent,
-  } = await req.json();
+export const runtime = "nodejs";
+const allowAttempt = createRateLimiter();
 
-  if (
-    !role ||
-    !name ||
-    !email ||
-    !message ||
-    consent !== true ||
-    (role === "mechanic" &&
-      (!contactName || !address || !city || !province || !postalCode))
-  ) {
-    return NextResponse.json(
-      { error: "Missing required fields." },
-      { status: 400 }
-    );
-  }
-
-  const user = process.env.EMAIL_USER;
-  const pass = process.env.EMAIL_PASS;
-
-
-  const contactReceiverEmails: Record<string, string> = {
-    customer: process.env.CONTACT_RECEIVER_CUSTOMER_EMAIL || "",
-    mechanic: process.env.CONTACT_RECEIVER_MECHANIC_EMAIL || "",
-  };
-
-  const to =
-    contactReceiverEmails[role.toLowerCase()] || process.env.CONTACT_RECEIVER_EMAIL;
-
-  if (!user || !pass || !to) {
-    return NextResponse.json(
-      { error: "Missing email credentials." },
-      { status: 500 }
-    );
-  }
-
-  const transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: { user, pass },
-  });
-
-
-  const emailSubject = `New ${role.charAt(0).toUpperCase() + role.slice(1)} Contact Submission from ${name}`;
-
-  let emailBody = `
-📨 New ${role.charAt(0).toUpperCase() + role.slice(1)} Contact Submission
-
-👤 Name: ${name}
-`;
-
-  if (role === "mechanic") {
-    emailBody += `🏢 Business Name: ${contactName}\n`;
-    emailBody += `🏠 Address: ${address}\n`;
-    emailBody += `🌆 City: ${city}\n`;
-    emailBody += `🏞 Province/State: ${province}\n`;
-    emailBody += `📮 Postal Code: ${postalCode}\n`;
-  }
-
-  emailBody += `
-📧 Email: ${email}
-📞 Phone: ${phone || "Not provided"}
-
-💬 Message:
-${message}
-`;
-
-  try {
-    await transporter.sendMail({
-      from: user,
-      to,
-      subject: emailSubject,
-      text: emailBody,
+export const POST = createContactHandler({
+  allow(request) {
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0].trim() || "unknown";
+    return allowAttempt(createHash("sha256").update(ip).digest("hex"));
+  },
+  async send(details) {
+    const user = process.env.EMAIL_USER;
+    const pass = process.env.EMAIL_PASS;
+    const to =
+      (details.role === "mechanic"
+        ? process.env.CONTACT_RECEIVER_MECHANIC_EMAIL
+        : process.env.CONTACT_RECEIVER_CUSTOMER_EMAIL) ||
+      process.env.CONTACT_RECEIVER_EMAIL;
+    if (!user || !pass || !to)
+      throw new Error("Contact delivery is not configured.");
+    const transport = nodemailer.createTransport({
+      service: "gmail",
+      auth: { user, pass },
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 20_000,
     });
-
-    return NextResponse.json({ success: true });
-  } catch (err) {
-    console.error("Email sending failed:", err);
-    return NextResponse.json(
-      { error: "Failed to send email." },
-      { status: 500 }
-    );
-  }
-}
+    await transport.sendMail({
+      from: { name: "Glory Auto Hub", address: user },
+      to,
+      replyTo: { name: details.name, address: details.email },
+      subject:
+        details.role === "mechanic"
+          ? "Glory Auto Hub — shop enquiry"
+          : "Glory Auto Hub — customer enquiry",
+      text: [
+        "New Glory Auto Hub website enquiry",
+        "Enquiry type: " + details.role,
+        "Name: " + details.name,
+        ...(details.contactName ? ["Shop: " + details.contactName] : []),
+        "Email: " + details.email,
+        "Phone: " + (details.phone || "Not provided"),
+        "",
+        details.message,
+        "",
+        "Contact consent: provided",
+      ].join("\n"),
+    });
+  },
+});

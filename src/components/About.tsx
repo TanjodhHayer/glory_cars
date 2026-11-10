@@ -1,30 +1,61 @@
-const About = () => {
-    return (
-      <section
-        id="about"
-        className="snap-start md:snap-center min-h-screen flex flex-col justify-center items-center bg-gray-50 dark:bg-gray-900 text-center px-6"
-        style={{ scrollMarginTop: '6rem' }} // equivalent to scroll-mt-24
-      >
-        <div className="max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary dark:text-white mb-10">
-            About Glory Cars
+import { PORTAL_URL } from "@/lib/site";
+export default function About() {
+  return (
+    <section id="for-shops" className="shop-section">
+      <div className="shell shop-grid">
+        <div>
+          <p className="eyebrow">FOR REPAIR SHOPS</p>
+          <h2>
+            Support your customers.
+            <br />
+            Keep your shop moving.
           </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-            At Glory Cars, we believe car repairs shouldn&apost come with stress.
-            Our mission is to make auto repair financing simple, fast, and available to everyone — no hoops, no hassles.
+          <p className="lead">
+            Bring repair financing into your customer conversations. Use your
+            Glory Auto Hub shop account to manage applications and documents in
+            one place.
           </p>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mb-6">
-            With zero down, instant approval, and flexible payment plans, we help drivers get back on the road without the financial burden. 
-            Whether it&aposs everyday maintenance or unexpected repairs, we work directly with your mechanic so you can focus on what matters — driving with confidence
-          </p>
-          <p className="text-lg text-gray-700 dark:text-gray-300">
-            Join thousands of happy drivers who&aposve found a smarter, easier way to finance their repairs. Glory Cars — Drive your dreams, stress-free.
-
-          </p>
+          <div className="actions">
+            <a className="button" href={PORTAL_URL + "/signup"}>
+              Register your shop ↗
+            </a>
+            <a className="text-link" href={PORTAL_URL + "/login"}>
+              Already registered? Sign in
+            </a>
+          </div>
         </div>
-      </section>
-    );
-  };
-  
-  export default About;
-  
+        <div className="shop-card">
+          <p className="eyebrow">YOUR SHOP ACCOUNT</p>
+          <h3>
+            Start online.
+            <br />
+            Work from your phone.
+          </h3>
+          <ul>
+            <li>
+              <strong>Register on the website</strong>
+              <span>Send your shop details and create your login.</span>
+            </li>
+            <li>
+              <strong>Complete onboarding</strong>
+              <span>
+                We’ll contact you about the agreement and approval steps.
+                Registration does not activate access or start a trial.
+              </span>
+            </li>
+            <li>
+              <strong>Sign in to the mobile app</strong>
+              <span>
+                Approved shops use the same account. Registration and
+                subscription management stay on the website.
+              </span>
+            </li>
+          </ul>
+          <a href="/contactMechanic" className="text-link">
+            Questions about joining? Contact us ↗
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}

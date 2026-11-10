@@ -1,18 +1,18 @@
-import React from "react";
+import type { Metadata } from "next";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 import Contact from "@/components/ContactSelector";
 import About from "@/components/About";
-
-const Home: React.FC = () => {
+import Faq from "@/components/Faq";
+export const metadata: Metadata = { alternates: { canonical: "/" } };
+export default function Home() {
   return (
-    <main className="h-screen overflow-y-scroll snap-y snap-mandatory">
+    <>
       <Hero />
       <Features />
       <About />
+      <Faq />
       <Contact />
-    </main>
+    </>
   );
-};
-
-export default Home;
+}
