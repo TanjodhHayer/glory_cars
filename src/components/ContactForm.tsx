@@ -167,7 +167,13 @@ export default function ContactForm({ role }: { role: ContactRole }) {
           <input id="consent" name="consent" type="checkbox" required />
           <label htmlFor="consent">
             I agree that Glory Auto Hub may contact me about this enquiry.{" "}
-            <a href={PORTAL_URL + "/privacy"}>Read the privacy policy.</a>
+            <a
+              href={PORTAL_URL + "/privacy"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Read the privacy policy (new tab).
+            </a>
           </label>
         </div>
         <button className="button" type="submit" disabled={busy}>
